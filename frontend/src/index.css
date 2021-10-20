@@ -1,8 +1,11 @@
 :root {
-  --pink-color: '#f472b7';
-  --yellow-color: '#fad34f';
-  --text-primary-color: '#3e3e3e';
-  --white-color: '#fff'
+  --pink-color: #f472b7;
+  --yellow-color: #fad34f;
+  --text-primary-color: #3e3e3e;
+  --text-secondary-color: #2d2d2d;
+  --white-color: #fff;
+  --border-color: #dcdcdc;
+  --input-padding: 30px 46px;
 }
 
 body {

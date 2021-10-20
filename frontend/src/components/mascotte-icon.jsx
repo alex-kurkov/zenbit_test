@@ -5,16 +5,11 @@ const StyledWrap = styled.div`
   width: fit-content;
   height: fit-content;
   transform: ${(props) =>
-    props.direction === 'up'
+    props.direction === 'down'
       ? 'rotate(180deg)'
       : 'rotate(0)'
   };
   transition: transform .3s ease-in-out;
-`
-
-const Svg = styled.svg`
-  width: ${(props) => props.width || '40px'};
-  height: ${(props) => props.height || '40px'};
 `
 const MouthPath = styled.path`
   fill: #fff;
@@ -28,15 +23,14 @@ const MascotteIcon = ({
   width,
   height
 }) => (
-  <StyledWrap type={type} >
-    <Svg
+  <StyledWrap direction={direction} >
+    <svg
       onClick={() => console.log('clicked')}
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 40 40"
       width={width}
       height={height}
       fill="none"
-      direction={direction}
     >
       {// face type
         type === 'finger'      
@@ -52,7 +46,7 @@ const MascotteIcon = ({
           ? <MouthPath d="M25.01 24.16c0,1.44 -1.16,0 -2.59,0 -1.44,0 -2.6,1.44 -2.6,0 0,-1.43 1.16,-2.59 2.6,-2.59 1.43,0 2.59,1.16 2.59,2.59zm8.17 0c0,1.44 -1.16,0 -2.6,0 -1.43,0 -2.59,1.44 -2.59,0 0,-1.43 1.16,-2.59 2.59,-2.59 1.44,0 2.6,1.16 2.6,2.59zm-2.6 5.5c0,2.64 -2.14,4.77 -4.77,4.77 -2.63,0 -4.77,-2.14 -4.77,-4.77 0,-2.63 2.14,0.19 4.77,0.19 2.63,0 4.77,-2.82 4.77,-0.19z"/>
           : <MouthPath d="M25.19 15.7c0,2.13 -1.73,3.86 -3.86,3.86 -2.13,0 -3.86,-1.73 -3.86,-3.86 0,-2.13 1.73,0.15 3.86,0.15 2.13,0 3.86,-2.28 3.86,-0.15zm2.1 -4.45c0,1.16 -0.94,0 -2.1,0 -1.16,0 -2.1,1.16 -2.1,0 0,-1.16 0.94,-2.1 2.1,-2.1 1.16,0 2.1,0.94 2.1,2.1zm-6.61 0c0,1.16 -0.94,0 -2.1,0 -1.16,0 -2.1,1.16 -2.1,0 0,-1.16 0.94,-2.1 2.1,-2.1 1.16,0 2.1,0.94 2.1,2.1z"/>
       }
-    </Svg>
+    </svg>
   </StyledWrap>
 );
 
