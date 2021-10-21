@@ -135,7 +135,7 @@ const FeedbackForm = () => {
         <ErrorsWrap>
           {['name', 'email', 'message'].map((err, idx) => (
             !errors[err].isOk &&
-            <ErrorText key={errors[err].text + idx}>{errors[err].text}</ErrorText>
+            <ErrorText key={err.toString() + idx}>{errors[err].text}</ErrorText>
           ))}
         </ErrorsWrap>
 
