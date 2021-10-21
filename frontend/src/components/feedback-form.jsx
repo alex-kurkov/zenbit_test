@@ -4,6 +4,19 @@ import styled from 'styled-components';
 import { useLocalStorage } from '../utils/hooks';
 import { validate } from '../utils/validation';
 
+const StyledForm = styled.form`
+  width: 100%;
+  padding: 2px;
+`
+const StyledLegend = styled.legend`
+  font-family: 'ApercuArabicPro', 'Segoe UI', 'Roboto', sans-serif;
+  line-height: 1.3;
+  font-size: 40px;
+  font-weight: 400;
+  margin-bottom: 30px;
+`
+
+
 const FeedbackForm = () => {
   const [ values, setValues ] = useLocalStorage('formValues', {
     name: '',
@@ -26,12 +39,6 @@ const FeedbackForm = () => {
   })
   const [ isValidForm, setIsValidForm ] = useState(false);
   
-/*   const validateValue = (name, value) => {
-    const [ isOk, text ] = validate(name, value);
-    const updatedErrors = { ...errors, [name]: {isOk, text} }; 
-    console.log('updatedErrors: ', updatedErrors)
-    setErrors(updatedErrors);
-  } */
   const handleChange = (e) => {
     const { name, value } = e.target;
     setValues({ ...values, [name]: value });
@@ -65,7 +72,6 @@ const FeedbackForm = () => {
 
   useEffect(() => {
     setIsValidForm(getAllValuesValidStatus());
-    console.log(errors);
   }, [errors]);
 
   useEffect(() => {
@@ -74,23 +80,13 @@ const FeedbackForm = () => {
       const [ isOk, text ] = validate(key, value);
       updatedErrors[key] = { isOk, text };
     });
-    console.log('updatedErrors: ', updatedErrors)
     setErrors(updatedErrors);
   }, [values]);
 
-/*   useEffect(() => {
-    validateValue('name', values.name)
-  }, [values]);
-  useEffect(() => {
-    validateValue('email', values.email)
-  }, [values.email]);
-  useEffect(() => {
-    validateValue('message', values.message)
-  }, [values.message]); */
 
   return (
-    <form name="feedback-form" onSubmit={postMessage} >
-      <legend>Reach out to us!</legend>
+    <StyledForm name="feedback-form" onSubmit={postMessage} >
+      <StyledLegend>Reach out to us!</StyledLegend>
       <Input 
         type="text"
         value={values.name}
@@ -99,6 +95,7 @@ const FeedbackForm = () => {
         onBlur={() => setIsValidForm(getAllValuesValidStatus())}
         placeholder="Your name *"
         onChange={handleChange}
+        isOk={errors.name.isOk}
         noValidate
       />
       <Input 
@@ -109,6 +106,7 @@ const FeedbackForm = () => {
         onBlur={() => setIsValidForm(getAllValuesValidStatus())}
         placeholder="Your email *"
         onChange={handleChange}
+        isOk={errors.email.isOk}
         noValidate
       />
       <Input 
@@ -120,6 +118,7 @@ const FeedbackForm = () => {
         onBlur={() => setIsValidForm(getAllValuesValidStatus())}
         placeholder="Your message *"
         onChange={handleChange}
+        isOk={errors.message.isOk}
         noValidate
       />
       <button type="submit" disabled={!isValidForm}>Send message</button>
@@ -129,7 +128,7 @@ const FeedbackForm = () => {
           <span key={errors[err].text + idx}>{errors[err].text}</span>
         ))}
       </div>
-    </form>
+    </StyledForm>
   )
 };
 
