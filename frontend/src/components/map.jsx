@@ -8,6 +8,10 @@ const StyledSection = styled.section`
   height: fit-content;
   padding-bottom: 140%;
   position: relative;
+  @media screen and (max-width: 961px) {
+    width: 100%;
+    padding-bottom: 100%;
+  }
 `
 const StyledIframe = styled.iframe`
   position: absolute;
@@ -17,6 +21,11 @@ const StyledIframe = styled.iframe`
   height: 120%;
   border: none;
   border-radius: 50%;
+  @media screen and (max-width: 961px) {
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+  }
 `
 
 const Map = () => (

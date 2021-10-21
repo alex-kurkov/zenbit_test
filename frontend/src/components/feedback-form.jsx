@@ -7,6 +7,12 @@ import { validate } from '../utils/validation';
 const StyledForm = styled.form`
   width: 100%;
   padding: 180px 2px 20px 2px;
+  @media screen and (max-width: 961px) {
+    padding: 20px 2px;
+  }
+  @media screen and (max-width: 476px) {
+    padding: 10px 2px;
+  }
 `
 const StyledLegend = styled.legend`
   font-family: 'ApercuArabicPro', 'Segoe UI', 'Roboto', sans-serif;
@@ -14,6 +20,9 @@ const StyledLegend = styled.legend`
   font-size: 40px;
   font-weight: 400;
   margin-bottom: 12px;
+  @media screen and (max-width: 476px) {
+    font-size: 32px;
+  }
 `
 const ActionsWrap = styled.div`
   display: flex;

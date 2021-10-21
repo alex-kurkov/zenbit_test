@@ -39,6 +39,13 @@ const StyledInput = styled.input`
     box-shadow: inset var(--border-color, #000) 0 4px 2px 2px;
     outline: none;
   }
+
+  @media screen and (max-width: 961px) {
+    min-height: 60px;
+  }
+  @media screen and (max-width: 476px) {
+    min-height: 40px;
+  }
   `
 
 const Input = ({

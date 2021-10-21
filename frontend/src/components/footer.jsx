@@ -12,11 +12,22 @@ const StyledFooter = styled.footer`
   box-sizing: border-box;
   position: relative;
   border-top: var(--border-color) 1px solid;
+  @media screen and (max-width: 961px) {
+    height: 100px;
+    padding: 24px 60px;
+  }
+  @media screen and (max-width: 476px) {
+    height: 80px;
+    padding: 20px 40px;
+  }
 `
 
 const SocialWrap=styled.ul`
   display: flex;
   gap: 24px;
+  @media screen and (max-width: 961px) {
+    gap: 12px;
+  }
 `
 const ListItem=styled.li`
   width: 24px;

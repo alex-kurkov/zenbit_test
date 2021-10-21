@@ -48,6 +48,7 @@ export const mascottes = {
     height: '214px',
     top: '65%',
     left: '-5%',
+    mobileHidden: true,
   },
   goodieTwo: {
     direction: 'none',
@@ -58,6 +59,7 @@ export const mascottes = {
     height: '124px',
     top: '50%',
     left: '-8%',
+    mobileHidden: false,
   },
   goodieThree: {
     direction: 'none',
@@ -68,6 +70,7 @@ export const mascottes = {
     height: '88px',
     top: '20px',
     left: '-120px',
+    mobileHidden: true,
   },
   goodieFour: {
     direction: 'none',
@@ -78,6 +81,7 @@ export const mascottes = {
     height: '214px',
     top: '5px',
     left: '-100px',
+    mobileHidden: true,
   },
   goodieFive: {
     direction: 'none',
@@ -88,6 +92,7 @@ export const mascottes = {
     height: '88px',
     top: '40%',
     left: '106%',
+    mobileHidden: true,
   },
   goodieSix: {
     direction: 'down',
@@ -98,5 +103,6 @@ export const mascottes = {
     height: '94px',
     top: '100%',
     left: '55%',
+    mobileHidden: false,
   },
 }

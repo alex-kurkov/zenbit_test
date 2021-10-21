@@ -21,6 +21,10 @@ const StyledButton = styled.button`
     opacity: .7;
   `
   };
+
+  @media screen and (max-width: 961px) {
+      width: 45%;
+    }
 `
 const Button = ({onClick = () => {}, type, isDisabled, children}) => (
   <StyledButton 

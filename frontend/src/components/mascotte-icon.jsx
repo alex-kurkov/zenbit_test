@@ -13,6 +13,9 @@ const StyledWrap = styled.div`
       : 'rotate(0)'
   };
   z-index: 2;
+  @media screen and (max-width: 961px) {
+    display: ${(p) => p.mobileHidden && 'none'};
+  }
 `
 const MouthPath = styled.path`
   fill: #fff;
@@ -30,10 +33,11 @@ const MascotteIcon = ({
     height,
     top = 0,
     left = 0,
+    mobileHidden
   } = data;
 
   return (
-    <StyledWrap direction={direction} top={top} left={left}>
+    <StyledWrap direction={direction} top={top} left={left} mobileHidden={mobileHidden}>
       <svg
         onClick={() => console.log('clicked')}
         xmlns="http://www.w3.org/2000/svg"
