@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Input } from '.';
 import styled from 'styled-components';
 import { useLocalStorage } from '../utils/hooks';
+import { validate } from '../utils/validation';
 
 const FeedbackForm = () => {
   const [ values, setValues ] = useLocalStorage('formValues', {
@@ -12,36 +13,29 @@ const FeedbackForm = () => {
   const [ errors, setErrors ] = useState({
     name: {
       isOk: false,
-      text: 'lkflk'
+      text: 'name is required'
     },
     email: {
       isOk: false,
-      text: '12233123'
+      text: 'email is required'
     },
     message: {
       isOk: true,
-      text: '%%%%%'
+      text: 'message is required'
     },
   })
   const [ isValidForm, setIsValidForm ] = useState(false);
-
-  const checkOverallValidity = () => {
-    const isValid = errors.name.isOk
-      && errors.email.isOk
-      && errors.message.isOk;
-    setIsValidForm(isValid);
-  }
-  useEffect(() => {
-    checkOverallValidity();
-  }, [values])
-
+  
+/*   const validateValue = (name, value) => {
+    const [ isOk, text ] = validate(name, value);
+    const updatedErrors = { ...errors, [name]: {isOk, text} }; 
+    console.log('updatedErrors: ', updatedErrors)
+    setErrors(updatedErrors);
+  } */
   const handleChange = (e) => {
     const { name, value } = e.target;
     setValues({ ...values, [name]: value });
-    //check validity
-    //set errors
   }
-
   const postMessage = (e) => {
     e.preventDefault();
     // need to do as promise
@@ -66,6 +60,34 @@ const FeedbackForm = () => {
   }
 
 
+  const getAllValuesValidStatus = () => 
+    errors.name.isOk && errors.email.isOk && errors.message.isOk;
+
+  useEffect(() => {
+    setIsValidForm(getAllValuesValidStatus());
+    console.log(errors);
+  }, [errors]);
+
+  useEffect(() => {
+    const updatedErrors = {};
+    Object.entries(values).forEach(([key, value]) => {
+      const [ isOk, text ] = validate(key, value);
+      updatedErrors[key] = { isOk, text };
+    });
+    console.log('updatedErrors: ', updatedErrors)
+    setErrors(updatedErrors);
+  }, [values]);
+
+/*   useEffect(() => {
+    validateValue('name', values.name)
+  }, [values]);
+  useEffect(() => {
+    validateValue('email', values.email)
+  }, [values.email]);
+  useEffect(() => {
+    validateValue('message', values.message)
+  }, [values.message]); */
+
   return (
     <form name="feedback-form" onSubmit={postMessage} >
       <legend>Reach out to us!</legend>
@@ -74,7 +96,7 @@ const FeedbackForm = () => {
         value={values.name}
         name="name"
         onFocus={() => console.log('enable live validadion')}
-        onBlur={checkOverallValidity}
+        onBlur={() => setIsValidForm(getAllValuesValidStatus())}
         placeholder="Your name *"
         onChange={handleChange}
         noValidate
@@ -84,7 +106,7 @@ const FeedbackForm = () => {
         value={values.email}
         name="email"
         onFocus={() => console.log('enable live validadion')}
-        onBlur={checkOverallValidity}
+        onBlur={() => setIsValidForm(getAllValuesValidStatus())}
         placeholder="Your email *"
         onChange={handleChange}
         noValidate
@@ -95,17 +117,16 @@ const FeedbackForm = () => {
         value={values.message}
         name="message"
         onFocus={() => console.log('enable live validadion')}
-        onBlur={checkOverallValidity}
+        onBlur={() => setIsValidForm(getAllValuesValidStatus())}
         placeholder="Your message *"
         onChange={handleChange}
         noValidate
       />
       <button type="submit" disabled={!isValidForm}>Send message</button>
       <div>
-        {['name', 'email', 'message'].map((err) => (
+        {['name', 'email', 'message'].map((err, idx) => (
           !errors[err].isOk &&
-          <span>{errors[err].text}</span>
-        
+          <span key={errors[err].text + idx}>{errors[err].text}</span>
         ))}
       </div>
     </form>

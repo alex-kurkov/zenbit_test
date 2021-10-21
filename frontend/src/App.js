@@ -1,6 +1,5 @@
 import { 
   MascotteIcon,
-  Input,
   FeedbackForm
 } from './components';
 
