@@ -1,18 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { 
-  MascotteIcon,
   FeedbackForm,
   Map,
-  Header
+  Footer,
+  MascotteIcon,
 } from './components';
 import styled from 'styled-components';
+import { mascottes } from './utils/data';
 
 const StyledApp = styled.div`
   max-width: 1440px;
   overflow: hidden;
-
+  margin: 0 auto;
 `
 const Main = styled.div`
+  position: relative;
   margin: 0 auto;
   max-width: 1140px;
   display: grid;
@@ -28,11 +30,10 @@ function App() {
       <Main>
         <FeedbackForm />
         <Map />
+        <MascotteIcon data={mascottes.goodieThree} />
       </Main>
-      <Header />
-{/*       <MascotteIcon looking="up" width="120" height="120" />
-      <MascotteIcon width="80" height="80" type="finger" looking="front" color="#46EBB0" direction="down"/>
- */}    </StyledApp>
+      <Footer />
+    </StyledApp>
   );
 }
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Input, Button } from '.';
 import styled from 'styled-components';
 import { useLocalStorage } from '../utils/hooks';
@@ -6,14 +6,14 @@ import { validate } from '../utils/validation';
 
 const StyledForm = styled.form`
   width: 100%;
-  padding: 2px;
+  padding: 180px 2px 20px 2px;
 `
 const StyledLegend = styled.legend`
   font-family: 'ApercuArabicPro', 'Segoe UI', 'Roboto', sans-serif;
   line-height: 1.3;
   font-size: 40px;
   font-weight: 400;
-  margin-bottom: 30px;
+  margin-bottom: 12px;
 `
 const ActionsWrap = styled.div`
   display: flex;
@@ -82,12 +82,14 @@ const FeedbackForm = () => {
   }
 
 
-  const getAllValuesValidStatus = () => 
-    errors.name.isOk && errors.email.isOk && errors.message.isOk;
+  const getAllValuesValidStatus = useCallback(() => {
+    return errors.name.isOk && errors.email.isOk && errors.message.isOk; 
+    }, [errors]
+  );
 
   useEffect(() => {
     setIsValidForm(getAllValuesValidStatus());
-  }, [errors]);
+  }, [errors, getAllValuesValidStatus]);
 
   useEffect(() => {
     const updatedErrors = {};

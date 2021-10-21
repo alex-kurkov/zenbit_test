@@ -10,8 +10,8 @@
   --white-color: #fff;
   --border-color: #dcdcdc;
   --input-padding: 30px 46px;
-  --error-color: #f472b7cc;
-  --correct-color: #46ebb0cc;
+  --error-color: #f472b7bb;
+  --correct-color: #46ebb0bb;
 }
 
 body {
@@ -20,4 +20,3 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-

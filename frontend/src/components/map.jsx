@@ -1,19 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
-import { googleMapsApiRequestUrl } from '../utils/constants';
+import { MascotteIcon } from '.';
+import { googleMapsApiRequestUrl, mascottes } from '../utils/data';
 
 const StyledSection = styled.section`
-  width: 100%;
+  width: 140%;
   height: fit-content;
-  padding-bottom: 100%;
+  padding-bottom: 140%;
   position: relative;
 `
 const StyledIframe = styled.iframe`
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 150%;
-  height: 150%;
+  width: 120%;
+  height: 120%;
   border: none;
   border-radius: 50%;
 `
@@ -21,6 +22,9 @@ const StyledIframe = styled.iframe`
 const Map = () => (
   <StyledSection>
     <StyledIframe loading="lazy" src={googleMapsApiRequestUrl} />
+    <MascotteIcon data={mascottes.goodieOne} />
+    <MascotteIcon data={mascottes.goodieTwo} />
+    <MascotteIcon data={mascottes.goodieSix} />
   </StyledSection>
 )
 

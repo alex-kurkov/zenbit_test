@@ -3,6 +3,7 @@ const regExpEmail = /([a-zA-Z0-9]([-_.]?[a-zA-Z0-9]+)*)@([a-zA-Z0-9]([-]?[a-zA-Z
 export const validate = (type, value) => {
   let isOk = false;
   let errorText = `${type} is required`;
+  if (!value) return [isOk, errorText];
 
   switch(type) {
     case 'name':

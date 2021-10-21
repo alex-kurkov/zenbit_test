@@ -3,7 +3,7 @@ import Input from "./input";
 import FeedbackForm from "./feedback-form";
 import Button from "./button";
 import Map from "./map";
-import Header from "./footer";
+import Footer from "./footer";
 
 export {
   MascotteIcon,
@@ -11,5 +11,5 @@ export {
   FeedbackForm,
   Button,
   Map,
-  Header
+  Footer,
 };
