@@ -1,6 +1,6 @@
 # ZENBIT TEST APP
 
-##Frontend features
+## Frontend features
 
 - bootstrapped with CRA
 - live form-inputs validation
@@ -9,7 +9,7 @@
 - Styled Components
 - custom useLocalStorage hook to prevent data loss on page refresh
 
-##Backend features
+## Backend features
 
 
 [Site](https://zen.kurkov.online)
