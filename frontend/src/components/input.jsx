@@ -21,15 +21,11 @@ const StyledInput = styled.input`
   border: var(--border-color, #000) solid thin;
   color: var(--text-primary-color, #000);
   caret-color: var(--text-primary-color, #000);
-
+  border-radius: 10px;
   background: ${(p) => p.isOk
     ? 'linear-gradient(to top, var(--correct-color, green) 0%, rgba(255, 255, 255, 0.0001) 5%)'
     : 'linear-gradient(to top, var(--error-color, red) 0%, rgba(0, 0, 0, .0001) 5%)'
-  };
-  
-  
-  
-  border-radius: 10px;
+  }; 
   
   &::placeholder {
     font-family: inherit;
@@ -43,18 +39,9 @@ const StyledInput = styled.input`
     outline: none;
   }
   `
-  const ErrorIndicator = styled.div`
-    content: '4g3eg';
-    position: absolute;
-    width: 10px;
-    height: 100%;
-    top: 2px;
-    left: 2px;
-    background: linear-gradient(45deg, red, #867e7e);
-  `
 
 const Input = ({
-  type, value, name, onFocus, onBlur, placeholder, onChange, rows, label, isOk
+  type, value, name, placeholder, onChange, rows, label, isOk
 }) => (
   <InputWrap>
     <label htmlFor={name}>{!!label && label}</label>
@@ -64,8 +51,6 @@ const Input = ({
       type={type}
       name={name}
       onChange={onChange}
-      onFocus={onFocus}
-      onBlur={onBlur}
       placeholder={placeholder}
       rows={rows}
       isOk={isOk}

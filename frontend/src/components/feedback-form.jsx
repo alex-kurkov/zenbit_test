@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Input } from '.';
+import { Input, Button } from '.';
 import styled from 'styled-components';
 import { useLocalStorage } from '../utils/hooks';
 import { validate } from '../utils/validation';
@@ -15,7 +15,22 @@ const StyledLegend = styled.legend`
   font-weight: 400;
   margin-bottom: 30px;
 `
-
+const ActionsWrap = styled.div`
+  display: flex;
+  gap: 8px;
+`
+const ErrorsWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+`
+const ErrorText = styled.span`
+  font-family: 'ApercuArabicPro', 'Segoe UI', 'Roboto', sans-serif;
+  line-height: 1;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--error-color, red);
+`
 
 const FeedbackForm = () => {
   const [ values, setValues ] = useLocalStorage('formValues', {
@@ -91,8 +106,6 @@ const FeedbackForm = () => {
         type="text"
         value={values.name}
         name="name"
-        onFocus={() => console.log('enable live validadion')}
-        onBlur={() => setIsValidForm(getAllValuesValidStatus())}
         placeholder="Your name *"
         onChange={handleChange}
         isOk={errors.name.isOk}
@@ -102,8 +115,6 @@ const FeedbackForm = () => {
         type="email"
         value={values.email}
         name="email"
-        onFocus={() => console.log('enable live validadion')}
-        onBlur={() => setIsValidForm(getAllValuesValidStatus())}
         placeholder="Your email *"
         onChange={handleChange}
         isOk={errors.email.isOk}
@@ -114,20 +125,21 @@ const FeedbackForm = () => {
         rows={3}
         value={values.message}
         name="message"
-        onFocus={() => console.log('enable live validadion')}
-        onBlur={() => setIsValidForm(getAllValuesValidStatus())}
         placeholder="Your message *"
         onChange={handleChange}
         isOk={errors.message.isOk}
         noValidate
       />
-      <button type="submit" disabled={!isValidForm}>Send message</button>
-      <div>
-        {['name', 'email', 'message'].map((err, idx) => (
-          !errors[err].isOk &&
-          <span key={errors[err].text + idx}>{errors[err].text}</span>
-        ))}
-      </div>
+      <ActionsWrap>
+        <Button type="submit" isDisabled={!isValidForm}>Send message</Button>
+        <ErrorsWrap>
+          {['name', 'email', 'message'].map((err, idx) => (
+            !errors[err].isOk &&
+            <ErrorText key={errors[err].text + idx}>{errors[err].text}</ErrorText>
+          ))}
+        </ErrorsWrap>
+
+      </ActionsWrap>
     </StyledForm>
   )
 };
