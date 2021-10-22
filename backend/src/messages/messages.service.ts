@@ -1,12 +1,16 @@
-import { Body, Injectable } from '@nestjs/common';
-import { Message } from './messages.interface';
+import { Injectable, Inject } from '@nestjs/common';
+import { MESSAGE_REPOSITORY } from 'src/core/constants';
+import { Message } from './message.entity';
+import { MessageDto } from './message.dto';
 
 @Injectable()
 export class MessagesService {
-  createMessage(@Body() data: Message): void {
-    console.log(data);
+  constructor(@Inject(MESSAGE_REPOSITORY) private readonly messageRepository: typeof Message) { }
+
+  async create(data: MessageDto): Promise<Message> {
+    return await this.messageRepository.create<any>(data)
   }
-  findAll(): string[] {
-    return ['here will come some logic', 'message 2'];
+  async findAll(): Promise<Message[]> {
+    return await this.messageRepository.findAll<Message>({})
   }
 }
