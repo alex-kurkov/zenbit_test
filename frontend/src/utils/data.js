@@ -3,6 +3,8 @@ import twitterImg from '../images/twitter.svg';
 import linkedinImg from '../images/linkedin.svg';
 import pinterestImg from '../images/pinterest.svg';
 
+export const API_URI = 'http://zen.kurkov.online';
+
 export const googleMapsApiRequestUrl =
 `https://www.google.com/maps/embed/v1/place
 ?key=AIzaSyA2ZiqJAMPp-S8iEYEDn-8E0Cobg6mu0mg

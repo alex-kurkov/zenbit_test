@@ -3,6 +3,7 @@ import { Input, Button } from '.';
 import styled from 'styled-components';
 import { useLocalStorage } from '../utils/hooks';
 import { validate } from '../utils/validation';
+import { postMessageRequest } from '../utils/api';
 
 const StyledForm = styled.form`
   width: 100%;
@@ -69,24 +70,23 @@ const FeedbackForm = () => {
   }
   const postMessage = (e) => {
     e.preventDefault();
-    // need to do as promise
-    /*     api.postMessage(values)
-    .then(() => {
-      setValues({
-        name: '',
-          email: '',
-          message: ''
+    postMessageRequest(values)
+      .then((res) => {
+        console.log(res);
+        setValues({
+          name: '',
+            email: '',
+            message: ''
+          })
         })
-      })
       .catch((e) => {
-        // set error, returned by backend
-      }) */
-      console.log('posting');
-      setValues({
+        console.log(e)
+      })
+/*       setValues({
         name: '',
         email: '',
         message: ''
-      });
+      }); */
 
   }
 
