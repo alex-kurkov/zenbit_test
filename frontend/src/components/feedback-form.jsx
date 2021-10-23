@@ -82,12 +82,6 @@ const FeedbackForm = () => {
       .catch((e) => {
         console.log(e)
       })
-/*       setValues({
-        name: '',
-        email: '',
-        message: ''
-      }); */
-
   }
 
 
