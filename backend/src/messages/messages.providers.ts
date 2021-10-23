@@ -1,7 +1,9 @@
 import { MessageEnt } from './message.entity';
 import { MESSAGE_REPOSITORY } from 'src/core/constants';
 
-export const messagesProviders = [{
+export const messagesProviders = [
+  {
     provide: MESSAGE_REPOSITORY,
     useValue: MessageEnt,
-}];
+  },
+];

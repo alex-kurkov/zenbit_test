@@ -7,7 +7,7 @@ import { ConfigModule } from '@nestjs/config';
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
     DatabaseModule,
-    MessagesModule, 
+    MessagesModule,
   ],
 })
-export class AppModule { }
+export class AppModule {}
