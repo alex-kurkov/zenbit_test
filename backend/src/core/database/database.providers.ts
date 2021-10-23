@@ -1,7 +1,7 @@
 import { Sequelize } from 'sequelize-typescript';
 import { SEQUELIZE, DEVELOPMENT, TEST, PRODUCTION } from '../constants';
 import { databaseConfig } from './database.config';
-import { Message } from 'src/messages/message.entity';
+import { MessageEnt } from 'src/messages/message.entity';
 
 export const databaseProviders = [{
     provide: SEQUELIZE,
@@ -21,7 +21,7 @@ export const databaseProviders = [{
            config = databaseConfig.development;
         }
         const sequelize = new Sequelize(config);
-        sequelize.addModels([Message]);
+        sequelize.addModels([MessageEnt]);
         await sequelize.sync();
         return sequelize;
     },

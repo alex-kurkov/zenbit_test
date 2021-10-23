@@ -1,6 +1,5 @@
 import { Controller, Get, Post, HttpCode, Body } from '@nestjs/common';
 import { MessageDto } from './message.dto';
-// import { Message } from './messages.interface';
 import { MessagesService } from './messages.service';
 
 @Controller('messages')
@@ -14,7 +13,7 @@ export class MessagesController {
 
   @Post('')
   @HttpCode(201)
-  createMessage(@Body() data: MessageDto): void {
+  create(@Body() data: MessageDto) {
     this.messagesService.create(data);
   }
 }
