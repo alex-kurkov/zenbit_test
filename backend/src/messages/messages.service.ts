@@ -10,7 +10,7 @@ export class MessagesService {
   ) {}
 
   async create(@Body() data): Promise<MessageEnt> {
-    console.log(data);
+    console.log('data', data);
     return await this.messageRepository.create({ ...data });
   }
   async findAll(): Promise<MessageEnt[]> {
