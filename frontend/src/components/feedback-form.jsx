@@ -58,9 +58,13 @@ const FeedbackForm = () => {
       text: 'email is required'
     },
     message: {
-      isOk: true,
+      isOk: false,
       text: 'message is required'
     },
+    server: {
+      isOk: true,
+      text: ''
+    }
   })
   const [ isValidForm, setIsValidForm ] = useState(false);
   
@@ -73,15 +77,25 @@ const FeedbackForm = () => {
     postMessageRequest(values)
       .then((res) => {
         if (res.statusCode >= 400) {
-          console.log(res?.message?.join('\n'));
+          const error = res.message?.join('\n');
+          if (error) {
+            setErrors({
+              ...errors,
+              server: {
+                isOk: false,
+                text: `Server did not accept data:\n${error}`,
+              }
+            })
+          }
+
         } else {
           setValues({
             name: '',
-              email: '',
-              message: ''
-            })
+            email: '',
+            message: ''
+          })
         }
-        })
+      })
       .catch((e) => {
         console.log(e)
       })
@@ -98,7 +112,12 @@ const FeedbackForm = () => {
   }, [errors, getAllValuesValidStatus]);
 
   useEffect(() => {
-    const updatedErrors = {};
+    const updatedErrors = {
+      server: {
+        isOk: true,
+        text: '',
+      }
+    };
     Object.entries(values).forEach(([key, value]) => {
       const [ isOk, text ] = validate(key, value);
       updatedErrors[key] = { isOk, text };
@@ -141,7 +160,7 @@ const FeedbackForm = () => {
       <ActionsWrap>
         <Button type="submit" isDisabled={!isValidForm}>Send message</Button>
         <ErrorsWrap>
-          {['name', 'email', 'message'].map((err, idx) => (
+          {['name', 'email', 'message', 'server'].map((err, idx) => (
             !errors[err].isOk &&
             <ErrorText key={err.toString() + idx}>{errors[err].text}</ErrorText>
           ))}
