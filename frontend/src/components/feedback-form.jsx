@@ -72,12 +72,15 @@ const FeedbackForm = () => {
     e.preventDefault();
     postMessageRequest(values)
       .then((res) => {
-        console.log(res);
-        setValues({
-          name: '',
-            email: '',
-            message: ''
-          })
+        if (res.statusCode >= 400) {
+          console.log(res?.message?.join('\n'));
+        } else {
+          setValues({
+            name: '',
+              email: '',
+              message: ''
+            })
+        }
         })
       .catch((e) => {
         console.log(e)
